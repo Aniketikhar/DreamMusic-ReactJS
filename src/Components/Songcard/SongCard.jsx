@@ -98,7 +98,7 @@ const SongCard = () => {
               type="range"
               min="0"
               max={100}
-              value={40}
+              
               //   onChange={handleSeek}
             />
             &nbsp;&nbsp;&nbsp; <span> {formatTime(duration)}</span>

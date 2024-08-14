@@ -79,8 +79,15 @@ export default function GlobalState({ children }) {
         }
       );
 
-      setSongs(response.data.tracks);
-      setLoading(false);
+      if(response){
+        const tracks = response.data.tracks.map( (track , index) => ({
+          ...track,
+          index
+        }))
+        setSongs(tracks);
+        setLoading(false);
+
+      }
     } catch (err) {
       console.error('Error fetching tracks', err);
       setError(err);
@@ -156,6 +163,7 @@ export default function GlobalState({ children }) {
         setSongs,
         
         currentTrackIndex,
+        setCurrentTrackIndex,
         howlerInstance,
         isPlaying,
         playTrack,

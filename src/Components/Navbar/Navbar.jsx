@@ -1,6 +1,6 @@
 import React from "react";
 import { IoSearch } from "react-icons/io5";
-import navbar_logo from "../../assets/navbar-logo.png"
+import navbar_logo from "../../assets/navbar-logo.png";
 import { RiSearchLine } from "react-icons/ri";
 
 const Navbar = () => {
@@ -27,7 +27,7 @@ const Navbar = () => {
           placeholder="Search track , artist, album"
         />
         <button type="submit" className="inline-block text-lg text-white">
-        <RiSearchLine />
+          <RiSearchLine />
         </button>
       </form>
     </nav>
