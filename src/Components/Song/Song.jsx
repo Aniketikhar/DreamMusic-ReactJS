@@ -20,7 +20,7 @@ const Song = ({ song, index }) => {
     <div
       className={
         currentTrackIndex == index
-          ? "border-l-4 border-[#ca0000] bg-[#6b0000] song flex text-center items-center my-1 px-5 lg:px-10"
+          ? "border-l-4 border-[#ca0000] bg-[#5c0000] song flex text-center items-center my-1 px-5 lg:px-10"
           : " song flex text-center items-center my-1 px-5 lg:px-10 "
       }
       onClick={handleCurrentSong}
