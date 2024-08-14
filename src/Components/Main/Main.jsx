@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Main.css";
 import Navbar from "../Navbar/Navbar";
 import banner from "../../assets/banner.png"
@@ -6,9 +6,36 @@ import SongList from "../Songlist/SongList";
 import BoottomSong from "../BottomSong/BoottomSong";
 import { GlobalContext } from "../../Context/Context";
 import SongCard from "../Songcard/SongCard";
+import { closestCorners, DndContext } from "@dnd-kit/core";
+import { arrayMove } from "react-movable";
+
 
 const Main = () => {
+  const [songs, setSongs] = useState([
+    { id: 1, title: "Song 1", popular: 90, time: "3:45", album: "Album 1" },
+    { id: 2, title: "Song 2", popular: 80, time: "4:15", album: "Album 2" },
+    { id: 3, title: "Song 3", popular: 70, time: "5:00", album: "Album 3" },
+    { id: 4, title: "Song 4", popular: 60, time: "3:20", album: "Album 4" },
+    { id: 5, title: "Song 5", popular: 50, time: "4:30", album: "Album 5" },
+    //... more songs
+  ]);
+
+  const getSongPos = id => songs.findIndex(song => song.id == id)
+
   const { IsMusicPlayer } = useContext(GlobalContext);
+
+  const handleDragEnd = event => {
+    const { active , over} = event;
+
+    if( active.id == over.id) return;
+    setSongs( songs => {
+      const originalPos = getSongPos(active.id);
+      const newPos = getSongPos(over.id);
+
+      return arrayMove(songs, originalPos, newPos);
+    } )
+    
+  }
 
   
   if( IsMusicPlayer ) return <SongCard />;
@@ -33,7 +60,10 @@ const Main = () => {
             <p className="w-[10%]">TIME</p>
             <p className="w-[30%] md:w-[20%] text-right pr-3">ALBUM</p>
           </div>
-          <SongList />
+          <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCorners}>
+          <SongList songs={songs} />
+
+          </DndContext>
           
         </div>
         
