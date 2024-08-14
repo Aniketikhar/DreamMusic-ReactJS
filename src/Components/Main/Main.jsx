@@ -3,13 +3,14 @@ import "./Main.css";
 import Navbar from "../Navbar/Navbar";
 import banner from "../../assets/banner.png"
 import SongList from "../Songlist/SongList";
+import BoottomSong from "../BottomSong/BoottomSong";
 
 const Main = () => {
   return (
     <div className="main w-[100%] h-screen md:w-[70%] lg:w-[55%]">
       <Navbar />
       {/* Your main content goes here */}
-      <div className="main-container overflow-y-scroll pt-3  h-[80vh] sm:h-[90vh]">
+      <div className="main-container overflow-y-scroll pt-3  h-[74vh] sm:h-[83vh]">
         <div className="banner px-5 lg:px-10">
           <img src={banner} alt="banner" />
         </div>
@@ -31,6 +32,7 @@ const Main = () => {
         </div>
         
       </div>
+        <BoottomSong />
     </div>
   );
 };
