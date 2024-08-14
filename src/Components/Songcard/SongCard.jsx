@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./SongCard.css";
 import banner from "../../assets/banner.png";
 import songplayer from "../../assets/songplayer.png";
@@ -6,14 +6,22 @@ import { TfiLoop } from "react-icons/tfi";
 import { MdSkipNext, MdSkipPrevious } from "react-icons/md";
 import { FaPlay } from "react-icons/fa";
 import { FaShuffle } from "react-icons/fa6";
+import { GlobalContext } from "../../Context/Context";
+import { IoCloseSharp } from "react-icons/io5";
 
 const SongCard = () => {
 
-    const [isPlaying , setIsPlaying] = useState(false)
+    const [isPlaying , setIsPlaying] = useState(false);
+    const { IsMusicPlayer, setIsMusicPlayer } = useContext(GlobalContext);
+
+    
   return (
     <>
-      <div className="flex justify-center absolute  bottom-3 w-[100%]">
-        <div className="rounded-2xl  text-white bg-[#6b0000] w-[100%] md:w-[90%] lg:w-[80%] h-screen md:h-[350px]">
+      <div className="flex justify-center absolute  md:bottom-3 w-[100%]">
+        <div className="flex flex-col justify-center rounded-none md:rounded-2xl  text-white bg-[#6b0000] w-[100%] md:w-[90%] lg:w-[80%] h-screen md:h-[350px]">
+          <button className={ IsMusicPlayer ? "absolute right-10 top-10 text-3xl" : "hidden"} onClick={() => setIsMusicPlayer(false)}>
+          <IoCloseSharp />
+          </button>
           <p className="text-lg font-bold text-center my-4">Now Playing</p>
           <div className="flex justify-center mt-5 ">
             <img src={songplayer} className="h-20 rounded-md" alt="song img" />

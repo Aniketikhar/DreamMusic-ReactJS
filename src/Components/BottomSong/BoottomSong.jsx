@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./BottomSong.css";
 import songplayer from "../../assets/songplayer.png";
 import { TfiLoop } from "react-icons/tfi";
 import { MdSkipNext, MdSkipPrevious } from "react-icons/md";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { FaShuffle } from "react-icons/fa6";
+import { GlobalContext } from "../../Context/Context";
 
 const BoottomSong = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const { setIsMusicPlayer } = useContext(GlobalContext)
 
   return (
-    <div className="bg-slate-900 md:hidden ">
+    <div className="bg-slate-900 md:hidden " onClick={() => setIsMusicPlayer(true)}>
       <div className="flex justify-center py-1 w-[80%] h-[50px] ">
         <img src={songplayer} alt="" className=" h-[40px]" />
         <div className="flex justify-around items-center ">

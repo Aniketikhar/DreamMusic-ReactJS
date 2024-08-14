@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import "./Main.css";
 import Navbar from "../Navbar/Navbar";
 import banner from "../../assets/banner.png"
 import SongList from "../Songlist/SongList";
 import BoottomSong from "../BottomSong/BoottomSong";
+import { GlobalContext } from "../../Context/Context";
+import SongCard from "../Songcard/SongCard";
 
 const Main = () => {
+  const { IsMusicPlayer } = useContext(GlobalContext);
+
+  
+  if( IsMusicPlayer ) return <SongCard />;
   return (
-    <div className="main w-[100%] h-screen md:w-[70%] lg:w-[55%]">
+    <div className="main w-[100%] flex flex-col h-screen md:w-[70%] lg:w-[55%]">
       <Navbar />
-      {/* Your main content goes here */}
-      <div className="main-container overflow-y-scroll pt-3  h-[74vh] sm:h-[83vh]">
+      {/* Your main content goes here h-[74vh] sm:h-[83vh] */}
+      <div className="main-container overflow-y-scroll pt-3 h-auto  ">  
         <div className="banner px-5 lg:px-10">
           <img src={banner} alt="banner" />
         </div>
