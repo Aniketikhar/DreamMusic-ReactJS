@@ -1,11 +1,11 @@
 import React from "react";
 import "./RightSidebar.css";
+import SongCard from "../Songcard/SongCard";
 
 const RightSidebar = () => {
   return (
-    <div className="rightside hidden md:block md:w-[30%] lg:w-[25%]">
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque,
-      architecto.
+    <div className="rightside relative hidden md:block md:w-[30%] lg:w-[25%]">
+       <SongCard />
     </div>
   );
 };
