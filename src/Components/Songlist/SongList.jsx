@@ -9,12 +9,12 @@ import Song from "../Song/Song";
 
 const SongList = ({ songs }) => {
   const id = 1
-
+  const [currentSong, setCurrentSong] = useState(null);
   return (
     <>
       <SortableContext items={songs} key={() => id + 1} strategy={verticalListSortingStrategy}>
         {songs.map((song, index) => {
-          return <Song song={song} index={index} />;
+          return <Song song={song} index={index} currentSong={currentSong} setCurrentSong={setCurrentSong} />;
         })}
       </SortableContext>
     </>

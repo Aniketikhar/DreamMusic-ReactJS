@@ -3,14 +3,15 @@ import { CSS } from "@dnd-kit/utilities";
 import { useSortable } from "@dnd-kit/sortable";
 import banner from "../../assets/banner.png";
 import { GlobalContext } from "../../Context/Context";
+import { BiSolidMusic } from "react-icons/bi";
 
-const Song = ({ song, index }) => {
-  const [currentSong, setCurrentSong] = useState(null);
+const Song = ({ song, index , currentSong, setCurrentSong }) => {
+  
   const { playTrack } = useContext(GlobalContext); 
 
   const handleCurrentSong = (e) => {
     console.log(e.target.parentNode.id);
-    setCurrentSong(e.target.parentNode.id);
+    setCurrentSong(index);
     playTrack(index);
   };
   const truncateText = (text, maxLength) => {
@@ -33,7 +34,7 @@ const Song = ({ song, index }) => {
       style={style}
       {...listeners}
       className={
-        currentSong === index
+        currentSong == index
           ? "border-l-4 border-[#ca0000] bg-[#6b0000] song flex text-center items-center my-1 px-5 lg:px-10"
           : " song flex text-center items-center my-1 px-5 lg:px-10 "
       }
@@ -41,7 +42,7 @@ const Song = ({ song, index }) => {
       id={index + 1}
       onClick={handleCurrentSong}
     >
-      <p className="w-[5%]">{index + 1}</p>
+      <p className="w-[5%]">{ currentSong == index ? <span className=" text-xl text-red-500"><BiSolidMusic /></span>  : index + 1}</p>
       <p className="w-[60%] md:w-[50%] flex items-center md:ms-4">
         <img src={song.album.images[0].url} height="60px" width="50px"  title={song.name} className="mx-3" alt="" />
         <span title={song.name}>{song && truncateText(song.name, 21)}</span>
