@@ -8,36 +8,45 @@ import { FaShuffle } from "react-icons/fa6";
 import { GlobalContext } from "../../Context/Context";
 
 const BoottomSong = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const { setIsMusicPlayer } = useContext(GlobalContext)
+  const { setIsMusicPlayer, songs,
+    currentTrackIndex, playTrack, isPlaying, pauseTrack, nextTrack, prevTrack } =
+    useContext(GlobalContext);
+
+    const truncateText = (text, maxLength) => {
+      if (text.length <= maxLength) return text;
+      return `${text.slice(0, maxLength)}...`;
+    };
 
   return (
-    <div className="bg-slate-900 md:hidden " onClick={() => setIsMusicPlayer(true)}>
+    <div
+      className="bg-slate-900 md:hidden "
+      
+    >
       <div className="flex justify-center py-1 w-[80%] h-[50px] ">
-        <img src={songplayer} alt="" className=" h-[40px]" />
+        <img src={songs[currentTrackIndex]?.album.images[0].url} alt="" className=" h-[40px]" />
         <div className="flex justify-around items-center ">
-          <div className="flex flex-col ms-5 text-white">
-            <p className="text-sm font-semibold">Song name jkbf kjdfd  djbfd</p>
-            <p className="text-xs">Artist name</p>
+          <div className="flex flex-col ms-5 text-white" onClick={() => setIsMusicPlayer(true)}>
+            <p className="text-sm font-semibold" title={songs[currentTrackIndex]?.name} >{songs[currentTrackIndex] && truncateText(songs[currentTrackIndex]?.name, 15)}</p>
+            <p className="text-xs">{songs[currentTrackIndex] && truncateText(songs[currentTrackIndex]?.artists[0]?.name, 15)}</p>
           </div>
 
           <div className="ms-6 ">
             <div className="flex justify-center items-center text-white ">
-              <button className="text-lg">
+              <button className="text-lg" onClick={prevTrack}>
                 <MdSkipPrevious />
               </button>
 
               {isPlaying ? (
-                <button className="px-3">
+                <button className="px-3" onClick={pauseTrack}>
                   <FaPause />
                 </button>
               ) : (
-                <button className="mx-3">
+                <button className="mx-3" onClick={() => playTrack(currentTrackIndex)}>
                   <FaPlay />
                 </button>
               )}
 
-              <button className="text-2xl">
+              <button className="text-2xl" onClick={nextTrack}>
                 <MdSkipNext />
               </button>
             </div>

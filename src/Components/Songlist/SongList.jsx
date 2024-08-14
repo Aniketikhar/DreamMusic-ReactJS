@@ -13,8 +13,8 @@ const SongList = ({ songs }) => {
   return (
     <>
       <SortableContext items={songs} key={() => id + 1} strategy={verticalListSortingStrategy}>
-        {songs.map((song) => {
-          return <Song song={song} id={song.id} />;
+        {songs.map((song, index) => {
+          return <Song song={song} index={index} />;
         })}
       </SortableContext>
     </>

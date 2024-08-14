@@ -11,14 +11,11 @@ import { arrayMove } from "react-movable";
 
 
 const Main = () => {
-  const [songs, setSongs] = useState([
-    { id: 1, title: "Song 1", popular: 90, time: "3:45", album: "Album 1" },
-    { id: 2, title: "Song 2", popular: 80, time: "4:15", album: "Album 2" },
-    { id: 3, title: "Song 3", popular: 70, time: "5:00", album: "Album 3" },
-    { id: 4, title: "Song 4", popular: 60, time: "3:20", album: "Album 4" },
-    { id: 5, title: "Song 5", popular: 50, time: "4:30", album: "Album 5" },
-    //... more songs
-  ]);
+
+  const { songs, setSongs} = useContext(GlobalContext);
+
+  if(songs) console.log(songs);
+
 
   const getSongPos = id => songs.findIndex(song => song.id == id)
 
