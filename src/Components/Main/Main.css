@@ -1,3 +1,19 @@
 .main{
     background: linear-gradient(to bottom , #4b0101, #0b0909 ) ;
   }
+
+
+  .main-container::-webkit-scrollbar {
+    width: 5px;
+    margin: 0;
+  }
+  
+  .main-container::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: rgba(62, 63, 65, 0.048);
+  }
+  
+  .main-container::-webkit-scrollbar-thumb {
+    background-color: rgb(17, 17, 17);
+    border-radius: 10px;
+  }

@@ -5,7 +5,7 @@ import { RiSearchLine } from "react-icons/ri";
 
 const Navbar = () => {
   return (
-    <nav className="flex justify-between flex-col sm:flex-row items-center text-sm mx-10 mt-5">
+    <nav className="flex justify-between flex-col sm:flex-row items-center text-sm mx-5 md:mx-8 mt-5">
       <p className="me-auto md:hidden text-white">
         <img src={navbar_logo} alt="" />
       </p>
@@ -23,7 +23,7 @@ const Navbar = () => {
           type="text"
           //   value={query}
           //   onChange={handleChange}
-          className="bg-transparent border-0 outline-none w-[220px] xl:w-[300px] text-white placeholder:text-white"
+          className="bg-transparent border-0 outline-none w-[200px] xl:w-[300px] text-white placeholder:text-white"
           placeholder="Search track , artist, album"
         />
         <button type="submit" className="inline-block text-lg text-white">
