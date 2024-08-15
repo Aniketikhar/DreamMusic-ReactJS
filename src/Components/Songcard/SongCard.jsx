@@ -23,47 +23,21 @@ const SongCard = () => {
     prevTrack,
     loopTrack,
     shuffleTracks,
+    currentTime,
+    duration,
+    setCurrentTime,
+    setDuration,
+    updateProgressBar,
+    handleSliderChange,
+    sliderValue,
   } = useContext(GlobalContext);
-
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [intervalId, setIntervalId] = useState(null);
-
-  useEffect(() => {
-    if (howlerInstance ) {
-      // Set the duration when the track is loaded
-      setDuration(howlerInstance._duration);
-
-      // Clear the interval when the component unmounts or the track changes
-      return () => {
-        if (intervalId) {
-          clearInterval(intervalId);
-        }
-      };
-    }
-  }, [howlerInstance]);
-
-  useEffect(() => {
-    if (howlerInstance) {
-      const id = setInterval(() => {
-        setCurrentTime(howlerInstance._onseek);
-      }, 1000); // Update every second
-      setIntervalId(id);
-    }
-  }, [howlerInstance]);
-
-  const formatTime = (seconds) => {
-    const minutes = Math.floor(seconds / 60) || 0;
-    const secs = Math.floor(seconds % 60) || 0;
-    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-  };
 
   const truncateText = (text, maxLength) => {
     if (text.length <= maxLength) return text;
     return `${text.slice(0, maxLength)}...`;
   };
 
-  console.log(howlerInstance)
+  console.log(howlerInstance);
 
   return (
     <>
@@ -85,24 +59,41 @@ const SongCard = () => {
               alt="song img"
             />
           </div>
-          <p className="text-2xl font-semibold mt-4 text-center" title={songs[currentTrackIndex]?.name}>
-            {songs[currentTrackIndex] && truncateText(songs[currentTrackIndex]?.name, 20)}
+          <p
+            className="text-2xl font-semibold mt-4 text-center"
+            title={songs[currentTrackIndex]?.name}
+          >
+            {songs[currentTrackIndex] &&
+              truncateText(songs[currentTrackIndex]?.name, 20)}
           </p>
           <p className="text-sm text-gray-300 text-center">
             {songs[currentTrackIndex]?.artists[0].name}
           </p>
           <div className="progress-bar mt-6 text-sm px-5 flex justify-center items-center">
-            <span>{formatTime(currentTime)} </span> &nbsp;&nbsp;&nbsp;
+            <span>
+              {Math.floor(currentTime / 60)
+                .toString()
+                .padStart(2, "0")}
+              :{(currentTime % 60).toFixed(0).padStart(2, "0")}{" "}
+            </span>
+            &nbsp;&nbsp;&nbsp;
             <input
               className="slider"
               type="range"
               min="0"
-              max={100}
-              
-              //   onChange={handleSeek}
+              max="100"
+              value={sliderValue}
+              onChange={handleSliderChange}
             />
-            &nbsp;&nbsp;&nbsp; <span> {formatTime(duration)}</span>
+            &nbsp;&nbsp;&nbsp;
+            <span>
+              {Math.floor(duration / 60)
+                .toString()
+                .padStart(2, "0")}
+              :{(duration % 60).toFixed(0).padStart(2, "0")}
+            </span>
           </div>
+
           <div className="flex justify-around items-center mt-3 text-lg">
             <div>
               <button onClick={loopTrack}>
@@ -119,7 +110,10 @@ const SongCard = () => {
                   <FaPause />
                 </button>
               ) : (
-                <button className="mx-3" onClick={() => playTrack(currentTrackIndex)}>
+                <button
+                  className="mx-3"
+                  onClick={() => playTrack(currentTrackIndex)}
+                >
                   <FaPlay />
                 </button>
               )}
