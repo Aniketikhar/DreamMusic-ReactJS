@@ -27,11 +27,11 @@ const BoottomSong = () => {
   return (
     <div className="bg-[#6b0000] md:hidden">
       <div className="flex py-1  mx-auto ">
-        <div className="flex justify-around  items-center w-[80%] h-[50px] ">
+        <div className="flex justify-around  items-center w-[80%] h-[70px] ">
           <img
             src={songs[currentTrackIndex]?.album.images[0].url}
             alt=""
-            className=" h-[40px] ms-7"
+            className=" h-[50px] ms-7"
           />
 
           <div
@@ -53,17 +53,17 @@ const BoottomSong = () => {
 
           <div className=" ">
             <div className="flex justify-center items-center text-white ">
-              <button className="text-lg" onClick={prevTrack}>
+              <button className="text-2xl" onClick={prevTrack}>
                 <MdSkipPrevious />
               </button>
 
               {isPlaying ? (
-                <button className="px-3" onClick={pauseTrack}>
+                <button className=" mx-2 p-3 bg-[#5e0000] rounded-md " onClick={pauseTrack}>
                   <FaPause />
                 </button>
               ) : (
                 <button
-                  className="mx-3"
+                  className="mx-2 p-3 bg-[#5e0000] rounded-md "
                   onClick={() => playTrack(currentTrackIndex)}
                 >
                   <FaPlay />

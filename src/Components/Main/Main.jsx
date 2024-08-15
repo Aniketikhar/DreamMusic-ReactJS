@@ -38,7 +38,7 @@ const Main = () => {
             <p className="w-[30%] md:w-[20%] text-right pr-3">ALBUM</p>
           </div>
           
-            <SongList songs={songs} />
+            <SongList songs={songs} setSongs={setSongs} />
         
         </div>
       </div>

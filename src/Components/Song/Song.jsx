@@ -1,11 +1,10 @@
 import React, { useContext, useState } from "react";
-import { CSS } from "@dnd-kit/utilities";
-import { useSortable } from "@dnd-kit/sortable";
 import { GlobalContext } from "../../Context/Context";
 import { BiSolidMusic } from "react-icons/bi";
 
 const Song = ({ song, index }) => {
-  const { playTrack , currentTrackIndex, setCurrentTrackIndex } = useContext(GlobalContext);
+  const { playTrack, currentTrackIndex, setCurrentTrackIndex } =
+    useContext(GlobalContext);
 
   const handleCurrentSong = () => {
     setCurrentTrackIndex(index);
@@ -15,6 +14,8 @@ const Song = ({ song, index }) => {
     if (text.length <= maxLength) return text;
     return `${text.slice(0, maxLength)}...`;
   };
+
+  
 
   return (
     <div
@@ -26,7 +27,7 @@ const Song = ({ song, index }) => {
       onClick={handleCurrentSong}
     >
       <p className="w-[5%]">
-        { currentTrackIndex == index ? (
+        {currentTrackIndex == index ? (
           <span className=" text-xl text-red-500">
             <BiSolidMusic />
           </span>
